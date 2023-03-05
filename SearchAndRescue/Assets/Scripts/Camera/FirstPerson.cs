@@ -9,6 +9,7 @@ public class FirstPerson : MonoBehaviour
     public float mouseSensitivity = 100f;
     public float cameraHeight = 1.5f; // added public variable
     float xRotation = 0f;
+    public float interactionRange = 2f; //range for interaction
 
     private void Start()
     {
@@ -26,5 +27,23 @@ public class FirstPerson : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
+    }
+
+    private void Interact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionRange))
+        {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
+        }
     }
 }
