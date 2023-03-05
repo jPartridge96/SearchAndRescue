@@ -13859,7 +13859,8 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   playerBody: {fileID: 207579931}
   mouseSensitivity: 350
-  cameraHeight: 1
+  cameraHeight: 0.6
+  interactionRange: 2
 --- !u!114 &473832517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13952,7 +13953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473832515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.187}
+  m_LocalPosition: {x: 0, y: 0.469, z: 0.187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46234,6 +46235,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0ef2b84cf59eeff418683793bb47cb0a, type: 3}
+--- !u!1 &1559078885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1403175414368226777, guid: 62b1e43bec26a074189b6605e7c79b30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1669587180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1559078886 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1399913232982320533, guid: 62b1e43bec26a074189b6605e7c79b30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1669587180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1559078891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559078885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d96ab6d08b21f428b832c6e6f7bf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openAngle: 90
+  closeAngle: 0
+  smooth: 2
+  door: {fileID: 1559078886}
 --- !u!1001 &1560377890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49649,6 +49678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1715699635
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399913232982320533, guid: 62b1e43bec26a074189b6605e7c79b30,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1399977262279796415, guid: 62b1e43bec26a074189b6605e7c79b30,
         type: 3}
