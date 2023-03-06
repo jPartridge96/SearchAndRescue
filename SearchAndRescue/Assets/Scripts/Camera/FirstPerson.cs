@@ -13,7 +13,7 @@ public class FirstPerson : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         transform.position = playerBody.position + new Vector3(startPosition.x, cameraHeight, startPosition.z); // modified camera position
     }
 

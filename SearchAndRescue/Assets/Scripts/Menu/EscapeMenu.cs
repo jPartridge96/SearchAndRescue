@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EscapeMenu : MonoBehaviour
 {
@@ -8,13 +7,14 @@ public class EscapeMenu : MonoBehaviour
     void Start()
     {
         // Hide the menu panel when the game starts
-        menuPanel.SetActive(false);
+        Time.timeScale = 0;
+        //menuPanel.SetActive(false);
     }
 
     void Update()
     {
         // If the player presses the Escape key, toggle the menu panel on/off
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (menuPanel.activeSelf)
             {
