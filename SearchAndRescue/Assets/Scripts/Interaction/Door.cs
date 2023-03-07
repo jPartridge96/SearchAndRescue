@@ -21,10 +21,12 @@ public class Door : Interactable
         if(isOpen)
         {
             door.rotation = Quaternion.Slerp(door.rotation, openRotation, Time.deltaTime * smooth);
+            this.message = "Close the door";
         }
         else
         {
             door.rotation = Quaternion.Slerp(door.rotation, closeRotation, Time.deltaTime * smooth);
+            this.message = "Open the door"; 
         }
     }
 
