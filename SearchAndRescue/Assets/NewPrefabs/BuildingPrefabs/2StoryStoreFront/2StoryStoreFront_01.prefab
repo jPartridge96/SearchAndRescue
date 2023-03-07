@@ -836,6 +836,7 @@ GameObject:
   - component: {fileID: 7628338603295801191}
   - component: {fileID: 7606220322390062636}
   - component: {fileID: 7606220322390062639}
+  - component: {fileID: 7289867339099737213}
   m_Layer: 7
   m_Name: SM_Bld_City_Preset_09_Door
   m_TagString: Interactable
@@ -942,6 +943,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &7289867339099737213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604393565551956533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d96ab6d08b21f428b832c6e6f7bf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openAngle: 90
+  closeAngle: 0
+  smooth: 2
+  door: {fileID: 7610784082737464299}
 --- !u!1 &7604974505048700093
 GameObject:
   m_ObjectHideFlags: 0
