@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : Interactable
+public class Door : MonoBehaviour, IInteractable
 {
     public float openAngle = 90f;
     public float closeAngle = 0f;
@@ -10,6 +10,11 @@ public class Door : Interactable
     public float smooth = 2.0f;
     public Transform door;
 
+    public string Message
+    {
+        get { return isOpen ? "Close the door" : "Open the door"; }
+    }
+
     private void Start()
     {
         openRotation = door.rotation * Quaternion.Euler(0.0f, openAngle, 0.0f);
@@ -18,19 +23,17 @@ public class Door : Interactable
 
     private void Update()
     {
-        if(isOpen)
+        if (isOpen)
         {
             door.rotation = Quaternion.Slerp(door.rotation, openRotation, Time.deltaTime * smooth);
-            this.message = "Close the door";
         }
         else
         {
             door.rotation = Quaternion.Slerp(door.rotation, closeRotation, Time.deltaTime * smooth);
-            this.message = "Open the door"; 
         }
     }
 
-    public override void Interact()
+    public void Interact()
     {
         if (isOpen)
         {
@@ -50,6 +53,5 @@ public class Door : Interactable
     private void Close()
     {
         isOpen = false;
-
     }
 }

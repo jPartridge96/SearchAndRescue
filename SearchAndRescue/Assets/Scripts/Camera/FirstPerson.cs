@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FirstPerson : MonoBehaviour
 {
+    public Inventory inventory;
+    public Transform dropPosition;
     public Vector3 startPosition;
     public Transform playerBody;
     public float mouseSensitivity = 100f;
@@ -12,8 +14,9 @@ public class FirstPerson : MonoBehaviour
     public float interactionRange = 2f;
     private RaycastHit _hit;
     private bool _isInteractable = false;
-    private Interactable _interactable;
+    private IInteractable _interactable;
     private GUIStyle _guiStyle = new GUIStyle();
+    public InventoryUI inventoryUI;
 
     private void Start()
     {
@@ -37,15 +40,46 @@ public class FirstPerson : MonoBehaviour
         {
             _interactable.Interact();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropItem();
+        }
     }
+
+private void DropItem()
+{
+    if (inventoryUI.currentSelectedSlot >= 0 && inventoryUI.currentSelectedSlot < inventory.items.Count)
+    {
+        int currentIndex = 0;
+        foreach (var itemEntry in inventory.items)
+        {
+            if (currentIndex == inventoryUI.currentSelectedSlot)
+            {
+                Item itemToDrop = itemEntry.Key;
+                inventory.RemoveItem(itemToDrop);
+
+                GameObject droppedItem = Instantiate(itemToDrop.prefab, dropPosition.position, Quaternion.identity);
+                droppedItem.AddComponent<ItemPickup>().item = itemToDrop;
+                break;
+            }
+
+            currentIndex++;
+        }
+    }
+}
+
+
+
+
 
     private void OnGUI()
     {
-        if (_isInteractable)
+        if (_isInteractable && _interactable != null)
         {
             _guiStyle.normal.textColor = Color.green;
             GUI.Label(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "+", _guiStyle);
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 20, 200, 20), _interactable.message, _guiStyle);
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 20, 200, 20), _interactable.Message, _guiStyle);
         }
         else
         {
@@ -54,6 +88,7 @@ public class FirstPerson : MonoBehaviour
         }
     }
 
+
     private void FixedUpdate()
     {
         if (Physics.Raycast(transform.position, transform.forward, out _hit, interactionRange))
@@ -61,7 +96,7 @@ public class FirstPerson : MonoBehaviour
             if (_hit.collider.CompareTag("Interactable"))
             {
                 _isInteractable = true;
-                _interactable = _hit.collider.GetComponent<Interactable>();
+                _interactable = _hit.collider.GetComponent<IInteractable>();
                 _guiStyle.normal.textColor = Color.green;
             }
             else
